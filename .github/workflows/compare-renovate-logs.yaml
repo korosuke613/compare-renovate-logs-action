@@ -39,6 +39,13 @@ jobs:
         with:
           path: ~/.npm
           key: npm-renovate-major-v${{ needs.version.outputs.major-version }}
+      # Setup LTS Node.js
+      #   Because Renovate may require more than the default Node.js version of GitHub Actions.
+      #   see: https://github.com/cybozu/renovate-dry-run-action/issues/26
+      - name: Setup LTS Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
       - env:
           LOG_LEVEL: debug
           LOG_FORMAT: json
@@ -63,6 +70,13 @@ jobs:
         with:
           path: ~/.npm
           key: npm-renovate-major-v${{ needs.setup.outputs.major-version }}
+      # Setup LTS Node.js
+      #   Because Renovate may require more than the default Node.js version of GitHub Actions.
+      #   see: https://github.com/cybozu/renovate-dry-run-action/issues/26
+      - name: Setup LTS Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
       - env:
           LOG_LEVEL: debug
           LOG_FORMAT: json
